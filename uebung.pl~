@@ -1,0 +1,46 @@
+/* Die Personen in Familie Maier sind:
+Lore, Gerd, Gitte und Uli */
+person(lore).
+person(gerd).
+person(gitte).
+person(uli).
+
+
+/* Die Frauen: */
+weiblich(lore).
+weiblich(gitte).
+
+/* Die Maenner: */
+maennlich(gerd).
+maennlich(uli).
+
+/* Der Hund heisst Fido */
+hund(fido).
+
+/* Die Spielzeugeisenbahn */
+spielzeugeisenbahn(d318).
+
+/* Eltern-Kind-Beziehungen */
+vater(gerd,gitte). % gerd ist der vater von gitte
+vater(gerd,uli).
+mutter(lore,gitte). % lore ist die mutter von gitte
+mutter(lore,uli).
+
+/* Jeder Vater schenkt seinem Sohn eine
+Spielzeugeisenbahn */
+
+schenkt(X,Y,Z) :- % X schenkt Y ein Z, falls
+vater(X,Y), % X Vater von Y ist und
+maennlich(Y), % Y maennlich ist und
+spielzeugeisenbahn(Z). % Z eine Spielzeugeisenbahn ist
+
+/*
+?- hund(fido).
+yes
+?- mutter(X,uli).
+X = lore
+?- vater(X,gitte), vater(X,uli).
+X = gerd
+?- schenkt(gerd,X,d318).
+X = uli
+*/
